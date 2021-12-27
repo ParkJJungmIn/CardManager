@@ -1,0 +1,58 @@
+
+@value makerGoogle ,makerGreen, makerLightPink, makerWhite from '../../common/colors.css';
+
+li{
+    list-style: none;
+}
+
+.google{
+    background: red;
+}
+button{
+    margin-bottom: 20px;
+    width: 220px;
+    height: 36px;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+
+
+.login{
+    width: 100%;
+    text-align: center;
+}
+
+.login_div{
+    width: 30em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: makerWhite;
+}
+.login_form{
+    opacity: 1;
+    position : absolute;
+    width : 240px;
+    height: 300px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin : auto;
+    padding: 100px 40px 40px 40px;
+    background: #35394a;
+
+}
+
