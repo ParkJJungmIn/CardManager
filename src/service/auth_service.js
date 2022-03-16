@@ -1,31 +1,36 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
-const provider = new GoogleAuthProvider();
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
 class AuthService{
-    login(providerName){
-        if(providerName == "Google"){
-            const auth = getAuth();
-            signInWithPopup(auth, provider)
-              .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const user = result.user;
-                console.log(user);
-                
-                // ...
-              }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-              });
-        }
+
+  constructor(){
+      this.firebaseAuth = getAuth();
+      this.googleProvider = new GoogleAuthProvider();
+  }
+
+    login(provider){
+      const authProvider = this.getProvider(provider);
+      return signInWithPopup(this.firebaseAuth, authProvider)
+
+    }
+
+    getProvider(provider_name){
+      switch(provider_name){
+        case "Google" :
+          return this.googleProvider;
+        default :
+          throw new Error(`not Supported provider: ${provider_name}`)
+      }
+    }
+  
+
+    logout(){
+      this.firebaseAuth.signOut();
+    }
+
+    onAuthChange(onUserChanged){
+      this.firebaseAuth.onAuthStateChanged( (user) => {
+        onUserChanged(user);
+      })
     }
 }
 

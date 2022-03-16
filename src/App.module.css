@@ -3,12 +3,10 @@
 }
 
 .App {
-  text-align: center;
-  display: flex;
-  margin: auto;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: black;
+  margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
+  color: #263747;
+  overflow-x: hidden;
 }
